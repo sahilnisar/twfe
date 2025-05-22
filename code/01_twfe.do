@@ -12,7 +12,7 @@
 
 ************* 00 - SETUP *************************************
 
-cd "/Users/annapapp/Desktop/twfe/"
+cd "C:\Users\sn332\Documents\GitHub\twfe\"
 
 * scheme
 set scheme plotplain
@@ -233,6 +233,22 @@ foreach baconestimate of local baconestimates{
 ************* 03 - EVENT STUDY *******************************
 
 use "data/`filename'.dta", clear
+
+local outcomevar logy
+	local postvar w
+	local timevar year
+	local areavar id
+	local timetreatvar effyear
+	local othercontrolvars 
+	* weights
+	local weightvarind 0
+	local weightvar 
+	if `weightvarind' == 1 {
+		local weights = "[aweight = `weightvar']"
+	}
+	if `weightvarind' == 0 {
+		local weights 
+	}
 
 * generate time to treat variables 
 gen time = `timevar' - `timetreatvar'
